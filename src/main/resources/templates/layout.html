@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:fragment="stylesheets">
+        <!-- Required meta tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/all.min.css}"/>
+        <link rel="stylesheet" th:href="@{/css/style.css}"/>
+        <link rel="icon" th:href="@{/images/icon.png}"/>
+    </th:block>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">My website</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<th:block th:insert="navbar :: navbar"></th:block>
+
+<!-- Content -->
+<div class="container-fluid" layout:fragment="body">
+
+</div>
+
+
+<!-- scripts -->
+<th:block th:fragment="scripts">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# DATABASE Configuration
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/library?useSSL=false
+    username: root
+    password: toortoor
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+  application:
+    name: Library Management
+
+# SECURITY Configuration
+  security:
+    user:
+      name: haytham
+      password: haytham
+

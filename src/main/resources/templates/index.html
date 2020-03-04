@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:insert="layout :: stylesheets" />
+    <title>Gestion de la bibliothèque - Acceuil</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<th:block th:insert="navbar :: navbar"></th:block>
+
+<!-- Content -->
+<div class="container-fluid" layout:fragment="body">
+    Home
+</div>
+
+<!-- scripts -->
+<th:block th:insert="layout :: scripts" />
+</body>
+</html>
