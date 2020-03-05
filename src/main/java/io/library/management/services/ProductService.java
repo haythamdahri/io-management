@@ -12,6 +12,6 @@ public interface ProductService {
 
     Product getProduct(Long id);
 
-    Collection<Product> getProducts();
+    Collection<Product> getProducts(String name);
 
 }

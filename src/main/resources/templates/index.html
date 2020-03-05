@@ -11,7 +11,44 @@
 
 <!-- Content -->
 <div class="container-fluid" layout:fragment="body">
-    Home
+    <div class="row">
+
+        <!-- Messages -->
+        <th:block  th:insert="~{messages :: messages}"/>
+
+        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 mx-auto mt-4">
+            <div class="table-responsive">
+                <table class="table bordered-table">
+                    <thead class="thead-dark">
+                    <tr align="center">
+                        <th scope="col">#</th>
+                        <th scope="col">Article</th>
+                        <th scope="col">Quantité Initiale</th>
+                        <th scope="col">Quantité En Sortie</th>
+                        <th scope="col">Quantité Restante</th>
+                        <th scope="col" colspan="2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}" align="center">
+                        <th scope="row" th:text="${product.id}">1</th>
+                        <td th:text="${product.name}">Mark</td>
+                        <td th:text="${product.initialStock}">Otto</td>
+                        <td th:with="result=${product.initialStock - product.remainingStock}" th:text="${result}">@mdo</td>
+                        <td th:text="${product.remainingStock}">@mdo</td>
+                        <td><a th:href="${'/products/' + product.id}"><button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></a></td>
+                        <td><form onsubmit="confirm('Êtes-vous sûre de supprimer l\'article?');" method="post" th:action="${'/products/' + product.id + '/delete'}"><input type="hidden" name="id" th:value="${product.id}" /><button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form></td>
+                    </tr>
+                    <tr align="center" th:if="${#lists.isEmpty(products)}">
+                        <td colspan="6" class="alert alert-warning font-weight-bold text-center">
+                            <i class="fas fa-exclamation-triangle"></i> Aucun article n'a été trouvé
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- scripts -->

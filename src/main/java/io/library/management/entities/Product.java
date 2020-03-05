@@ -18,21 +18,18 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name", nullable = false, insertable = true, updatable = true)
     private String name;
 
-    @Column(name = "description", nullable = false, insertable = true, updatable = true)
-    private String description;
-
     @Min(value = 1)
-    @Column(name = "initial_stock", nullable = false, insertable = true, updatable = false)
+    @Column(name = "initial_stock", nullable = false, insertable = true, updatable = true)
     private int initialStock;
 
-    @Max(value = 0)
+    @Min(value = 0)
     @Column(name = "remaining_stock", nullable = false, insertable = true, updatable = true)
     private int remainingStock;
 

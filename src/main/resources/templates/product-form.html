@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:insert="layout :: stylesheets"/>
+    <title>Gestion de la bibliothèque - Acceuil</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<th:block th:insert="navbar :: navbar"></th:block>
+
+<!-- Content -->
+<div class="container-fluid" layout:fragment="body">
+
+    <!-- Messages -->
+    <th:block  th:insert="~{messages :: messages}" />
+
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 mx-auto mt-4">
+            <form th:object="${product}" th:action="${'/products' + product.id != null ? product.id : ''}" method="post">
+                <!-- Id -->
+                <input type="hidden" name="id" th:field="*{id}" />
+                <div class="form-group">
+                    <label for="productName">Nom du produit</label>
+                    <input type="text" th:field="*{name}" required="true" class="form-control" id="productName"
+                           placeholder="Nom du produit"
+                           th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}"
+                         th:errors="*{name}">name
+                        Error
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="initialStock">Quantité initiale</label>
+                    <input type="number" th:field="*{initialStock}" required="true" class="form-control"
+                           name="initialStock" id="initialStock" placeholder="Quantité restante"
+                           th:classappend="${#fields.hasErrors('initialStock') ? 'is-invalid' : ''}" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('initialStock')}"
+                         th:errors="*{initialStock}">initialStock
+                        Error
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="remainingStock">Quantité restante</label>
+                    <input type="number" th:field="*{remainingStock}" required="true" class="form-control"
+                           name="remainingStock" id="remainingStock" placeholder="Quantité restante"
+                           th:classappend="${#fields.hasErrors('remainingStock') ? 'is-invalid' : ''}"/>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('remainingStock')}"
+                         th:errors="*{remainingStock}">remainingStock
+                        Error
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-save"></i> Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- scripts -->
+<th:block th:insert="layout :: scripts"/>
+</body>
+</html>

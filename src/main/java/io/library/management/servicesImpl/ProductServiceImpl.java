@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -35,8 +33,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Collection<Product> getProducts() {
-        return this.productRepository.findAll(Sort.by(Sort.Direction.ASC, "remainaingStock"));
+    public Collection<Product> getProducts(String name) {
+        return name != null ? this.productRepository.findByNameContainingIgnoreCase(name.trim()) :
+                this.productRepository.findAll(Sort.by(Sort.Direction.ASC, "remainingStock"));
     }
 
 }
